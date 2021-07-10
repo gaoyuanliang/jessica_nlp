@@ -6,7 +6,7 @@
 import re
 from hashlib import md5
 
-num_max_text_len = 50
+num_max_text_len = 200
 num_max_entity_len = 10
 num_max_context_len = 10
 num_word_max = 200000
@@ -649,7 +649,8 @@ words2word_idx(input)
 hash_function = lambda w: \
 	int(md5(w.encode('utf-16')).hexdigest(), 16)
 
-def words2word_idx(input, \
+def words2word_idx(
+	input, 
 	num_word_max = num_word_max):
 	return [(hash_function(w.lower()) \
 		% (num_word_max - 1) + 1) \
