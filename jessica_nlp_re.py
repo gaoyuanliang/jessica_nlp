@@ -174,7 +174,7 @@ def text_normalized2entities_from_lookup(text_normalized,\
 
 '''
 input = u"""
-Group 42
+Heriot-Watt 123
 """
 
 input = u'^^&& SSS __ _number_ _number_ of _location_ _name_ .178 sg@ga.com '
@@ -205,7 +205,7 @@ def entity2entity_normalized(input):
 		return None
 
 '''
-input = u" _start_ this is from group 42 and group 778 , or dubai dubai mall . ibm is also good _end_ "
+input = u" _start_ this is from Heriot-Watt and group 778 , or dubai dubai mall . ibm is also good _end_ "
 
 text_normalized2text_entity_comb(input, 
 	entities = {'number':['42', '778'], \
