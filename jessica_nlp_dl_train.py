@@ -168,8 +168,6 @@ def train_text_categorization_model_from_json(\
 			""").drop('word_idx')
 		###save the results
 		print('saving prediction results to '+output_json_prediction)
-		os.system(u"hadoop fs -rm -r "+output_json_prediction)
-		os.system(u"rm -r "+output_json_prediction)
 		output_df.write.mode('Overwrite').json(output_json_prediction)
 		print('outputs saved to '+output_json_prediction)
 	##
@@ -186,8 +184,6 @@ def train_text_categorization_model_from_json(\
 			LIMIT """+str(num_recommend))
 		###save the results
 		print('saving recommended positives to '+output_json_recommend)
-		os.system(u"hadoop fs -rm -r "+output_json_recommend)
-		os.system(u"rm -r "+output_json_recommend)
 		recommend_df.write.mode('Overwrite').json(output_json_recommend)
 		print('recommended positives to '+output_json_recommend)
 	print('running time: '+str(time.time() - start_time)\
