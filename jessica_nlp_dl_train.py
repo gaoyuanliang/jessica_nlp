@@ -1,5 +1,5 @@
 ################jessica_nlp_dl_train.py###############
-from pami_spark import *
+from jessica_nlp_spark import *
 from jessica_nlp_dl_model import *
 
 '''
