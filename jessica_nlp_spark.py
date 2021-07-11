@@ -29,8 +29,6 @@ load_entity_from_csv(\
 def load_entity_from_csv(\
 	entity_indicator_csv,\
 	sqlContext = None):
-	if sqlContext is None:
-		sqlContext = sqlContext_local
 	##
 	#print('loading indicators from '+entity_indicator_csv)
 	sqlContext.read.format("csv")\
@@ -71,8 +69,6 @@ def text_json2text_normalized_json(\
 	output_json = None,\
 	sqlContext = None):
 	start_time = time.time()
-	if sqlContext is None:
-		sqlContext = sqlContext_local
 	print('loading data from '+input_json)
 	input_df = sqlContext.read.json(input_json)
 	print('extracting url, email, number, and puntuation')
@@ -101,7 +97,8 @@ def text_json2text_normalized_json(\
 	print('runing time: '+str(time.time()-start_time))
 	return output_df
 
-def merge_entities(input_df,\
+def merge_entities(
+	input_df,\
 	sub_entities = []):
 	udf_comb_enti_int = udf(\
 		lambda input: {}, \
@@ -237,6 +234,7 @@ text_normalized_entity_extraction(\
 
 cat output1.json/*
 '''
+
 def text_normalized_entity_extraction(\
 	input_json,\
 	output_json,\
@@ -249,8 +247,6 @@ def text_normalized_entity_extraction(\
 	sqlContext = None,\
 	workspace = '.'):
 	start_time = time.time()
-	if sqlContext is None:
-		sqlContext = sqlContext_local
 	print('loading data from '+input_json)
 	input_df = sqlContext.read.json(input_json)
 	print('loaded '+str(input_df.count())+' records')
@@ -427,6 +423,7 @@ def text_normalized_entity_extraction(\
 	print('runing time: '+str(time.time()-start_time))
 	return output_df
 
+
 '''
 from jessica_nlp_spark import * 
 
@@ -497,8 +494,6 @@ def text_normalized_entity_context_matching(\
 	show_number_of_matched_texts = True,\
 	sqlContext = None):
 	start_time = time.time()
-	if sqlContext is None:
-		sqlContext = sqlContext_local
 	print('loading data from '+input_json)
 	input_df = sqlContext.read.json(input_json)
 	print('combining existing entities to one colume')
@@ -647,6 +642,7 @@ def text_normalized_entity_context_matching(\
 		+' seconds')
 	return output_df
 
+
 '''
 sudo rm input.json
 sudo vi input.json
@@ -684,8 +680,6 @@ def text_normalized_subject_object_context_matching(\
 	sqlContext = None,
 	workspace = '.'):
 	start_time = time.time()
-	if sqlContext is None:
-		sqlContext = sqlContext_local
 	print('loading data from '+input_json)
 	input_df = sqlContext.read.json(input_json)
 	print('loaded '+str(input_df.count())+' records from '+input_json)
@@ -779,8 +773,6 @@ def prepare_text_dl_input(\
 	negative_sample_number = None,\
 	sqlContext = None):
 	start_time = time.time()
-	if sqlContext is None:
-		sqlContext = sqlContext_local
 	print('loading data from '+input_json)
 	input_df = sqlContext.read.json(input_json)
 	#decide the labels according to indicators
@@ -875,8 +867,6 @@ def prepare_entity_context_dl_input(\
 	negative_sample_number = None,\
 	sqlContext = None):
 	start_time = time.time()
-	if sqlContext is None:
-		sqlContext = sqlContext_local
 	##
 	print('loading data from '+input_json)
 	input_df = sqlContext.read.json(input_json)
@@ -990,8 +980,6 @@ def prepare_subject_object_context_dl_input(\
 	sqlContext = None,
 	workspace = '.'):
 	start_time = time.time()
-	if sqlContext is None:
-		sqlContext = sqlContext_local
 	##
 	print('loading data from '+input_json)
 	input_df = sqlContext.read.json(input_json)
@@ -1138,8 +1126,6 @@ def entity_csv_update(entity_file_input,
 	output_file_csv = None,
 	sqlContext = None):
 	start_time = time.time()
-	if sqlContext is None:
-		sqlContext = sqlContext_local
 	print('loading indicators from '+entity_file_input)
 	sqlContext.read.format("csv")\
 		.option("header", "false")\
@@ -1229,8 +1215,6 @@ def title_csv2title_relation_df(input_file,\
 	relation_type,\
 	relation_reverse_type = None,\
 	sqlContext = None):
-	if sqlContext is None:
-		sqlContext = sqlContext_local
 	if input_file.split('.')[-1] == 'csv':
 		customSchema = StructType([\
 			StructField("title", StringType(), True)])
