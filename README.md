@@ -1,5 +1,16 @@
 # jessica_nlp
 
+docker 
+
+```bash
+sudo docker build -t gaoyuanliang/jessica_nlp_cpu:1.0.1 .
+
+sudo docker run -it \
+-v /Users/jessica/Downloads:/Downloads/ \
+gaoyuanliang/jessica_nlp_cpu:1.0.1
+```
+
+import packages
 
 ```python
 import re
